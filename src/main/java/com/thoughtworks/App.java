@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class App 
 {
+    /**
+     * 程序入口函数
+     * @param args
+     */
     public static void main( String[] args )
     {
         List<String> inputs = FileUtil.readInputs("src/main/resources/inputs.txt");
