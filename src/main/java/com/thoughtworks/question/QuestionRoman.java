@@ -5,7 +5,7 @@ import com.thoughtworks.Context;
 
 /**
  * @program: galaxy
- * @description: 类
+ * @description: 非单价问题
  * @author: ffye
  * @create: 2019-12-05 22:30
  */

@@ -6,7 +6,7 @@ import com.thoughtworks.Context;
 
 /**
  * @program: galaxy
- * @description: 罗马数字解析类
+ * @description: 罗马数字解析
  * @author: ffye
  * @create: 2019-12-05 18:03
  */

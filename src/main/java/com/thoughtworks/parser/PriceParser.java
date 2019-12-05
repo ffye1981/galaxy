@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @program: galaxy
- * @description: 金属单价解析类
+ * @description: 商品单价解析
  * @author: ffye
  * @create: 2019-12-05 18:04
  */

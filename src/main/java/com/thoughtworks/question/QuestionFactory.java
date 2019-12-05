@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @program: galaxy
- * @description: 问题工厂类
+ * @description: 问题工厂
  * @author: ffye
  * @create: 2019-12-05 22:00
  */

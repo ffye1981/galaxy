@@ -4,7 +4,7 @@ import com.thoughtworks.Context;
 
 /**
  * @program: galaxy
- * @description: 类
+ * @description: 问题抽象
  * @author: ffye
  * @create: 2019-12-05 22:01
  */
