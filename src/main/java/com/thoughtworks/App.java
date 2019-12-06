@@ -7,6 +7,7 @@ import com.thoughtworks.question.AbstractQuestion;
 import com.thoughtworks.question.QuestionFactory;
 import com.thoughtworks.util.FileUtil;
 
+import java.io.*;
 import java.util.List;
 
 /**
@@ -19,9 +20,9 @@ public class App
      * 程序入口函数
      * @param args
      */
-    public static void main( String[] args )
-    {
-        List<String> inputs = FileUtil.readInputs("src/main/resources/inputs.txt");
+    public static void main( String[] args ) throws IOException {
+        InputStream inputStream = App.class.getClassLoader().getResource("inputs.txt").openStream();
+        List<String> inputs = FileUtil.readInputs(inputStream);
         Context context = new Context();
         Parser[] parsers = new Parser[]{
                 new RomanParser(context),
