@@ -43,9 +43,7 @@ public class FileUtil {
             lines =  readInputs(inputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if(inputStream != null) {
                 try {
                     inputStream.close();
