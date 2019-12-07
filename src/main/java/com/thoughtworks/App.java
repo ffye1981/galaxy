@@ -11,8 +11,7 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Hello world!
- *
+ * galaxy程序入口类
  */
 public class App 
 {

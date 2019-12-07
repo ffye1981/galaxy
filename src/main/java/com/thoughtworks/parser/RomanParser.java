@@ -6,7 +6,7 @@ import com.thoughtworks.Context;
 
 /**
  * @program: galaxy
- * @description: 罗马数字解析
+ * @description: 罗马字母解析
  * @author: ffye
  * @create: 2019-12-05 18:03
  */
@@ -15,6 +15,11 @@ public class RomanParser extends Parser {
         super(context);
     }
 
+    /**
+     * 解析罗马字母和别名的映射
+     * @param input
+     * @return
+     */
     @Override
     public boolean parse(String input) {
         String[] lexers = input.split(" is ");

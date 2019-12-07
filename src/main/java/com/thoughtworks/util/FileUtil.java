@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @program: galaxy
- * @description: 类
+ * @description: 文件读写工具类
  * @author: ffye
  * @create: 2019-12-05 09:12
  */
@@ -35,6 +35,11 @@ public class FileUtil {
         }
     }
 
+    /**
+     * 从文件地址获取文件内容
+     * @param url
+     * @return
+     */
     public static List<String> readInputs(String url) {
         List<String> lines = null;
         InputStream inputStream = null;
@@ -55,6 +60,11 @@ public class FileUtil {
         return lines;
     }
 
+    /**
+     * 从流中获取文本内容
+     * @param inputStream
+     * @return
+     */
     public static List<String> readInputs(InputStream inputStream){
         List<String> lines = new ArrayList<String>();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

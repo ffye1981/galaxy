@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @program: galaxy
- * @description: 商品单价解析
+ * @description: 商品单价解析类
  * @author: ffye
  * @create: 2019-12-05 18:04
  */
@@ -18,6 +18,11 @@ public class PriceParser extends Parser {
         super(context);
     }
 
+    /**
+     * 解析商品和单价的映射
+     * @param input
+     * @return
+     */
     @Override
     public boolean parse(String input) {
         String[] lexers = input.split(" is ");

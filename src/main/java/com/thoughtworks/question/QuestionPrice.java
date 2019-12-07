@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @program: galaxy
- * @description: 包含单价问题
+ * @description: 商品总价问题
  * @author: ffye
  * @create: 2019-12-05 22:30
  */
@@ -20,6 +20,10 @@ public class QuestionPrice extends AbstractQuestion {
         this.qulifier = String.format("how many %s is", context.getUnit());;
     }
 
+    /**
+     * 计算商品总价
+     * @return
+     */
     @Override
     public String process() {
         String body = this.question.substring(this.qulifier.length()+1,this.question.length()-1).trim();

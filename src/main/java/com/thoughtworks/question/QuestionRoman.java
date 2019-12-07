@@ -6,7 +6,7 @@ import com.thoughtworks.Context;
 
 /**
  * @program: galaxy
- * @description: 非单价问题
+ * @description: 商品数量问题
  * @author: ffye
  * @create: 2019-12-05 22:30
  */
@@ -16,6 +16,10 @@ public class QuestionRoman extends AbstractQuestion {
         this.qulifier = "how much is";
     }
 
+    /**
+     * 计算商品数量
+     * @return
+     */
     @Override
     public String process() {
         String body = this.question.substring(this.qulifier.length()+1,this.question.length()-1).trim();

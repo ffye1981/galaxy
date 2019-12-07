@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * @program: galaxy
- * @description: 罗马数字集合类
+ * @description: 罗马字母集合类
  * @author: ffye
  * @create: 2019-12-05 14:51
  */
@@ -20,6 +20,10 @@ public class RomanGroup {
         this.romanList = new ArrayList<Roman>();
     }
 
+    /**
+     * 罗马字母转换为阿拉伯数字
+     * @return
+     */
     public int Calculate() {
         int result = 0;
         int length = this.romanList.size();
