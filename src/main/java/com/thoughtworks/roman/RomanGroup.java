@@ -27,37 +27,57 @@ public class RomanGroup {
             _valueCache = 0;
             int result = 0;
             int length = this.romanList.size();
-            for (int i = 0; i < length; i++) {
-                Roman current = this.romanList.get(i);
-                result += current.getValue();
-
-                if (i == length - 1)
-                    return result;
-
-                Roman next = this.romanList.get(i + 1);
-                if (current.getValue() < next.getValue()) {
-                    result = next.getValue() - result;
-                    i++;
-                } else if (current.getValue() == next.getValue()) {
-                    if (!current.isRepeat()) {
-                        throw new GalaxyException(String.format("%s can't be repeated", current.getSymbol()));
-                    }
-                    int count = 2;
-                    for (int j = i + 2; j < length; j++) {
-                        if (this.romanList.get(j).getSymbol() != current.getSymbol())
-                            break;
-                        count++;
+            if(length == 1) {
+                result = this.romanList.get(0).getValue();
+                _valueCache = result;
+            }else {
+                for (int i = 0; i < length; i++) {
+                    Roman current = this.romanList.get(i);
+                    if(i == length -1) {
                         result += current.getValue();
+                        break;
+                    }
+
+                    Roman next = this.romanList.get(i + 1);
+                    //当前小于下一个值，做减法
+                    if(current.getValue() > next.getValue()) {
+                        result += current.getValue();
+                    }else if (current.getValue() < next.getValue()) {
+                        if(!current.isSubtract()) {
+                            throw new GalaxyException(String.format("%s can never be subtracted", current.getSymbol()));
+                        }
+                        if((next.getIndex() - current.getIndex()) > 2) {
+                            throw new GalaxyException(String.format("%s can never be subtracted from %s", current.getSymbol(),next.getSymbol()));
+                        }
+                        result += (next.getValue() - current.getValue());
                         i++;
-                        if (count > 3) {
-                            throw new GalaxyException(String.format("%s can't be repeated more than 3 times", current.getSymbol()));
+                    } else if (current.getValue() == next.getValue()) {
+                        if (!current.isRepeat()) {
+                            throw new GalaxyException(String.format("%s can't be repeated", current.getSymbol()));
+                        }
+                        result += current.getValue();
+                        int count = 2;
+                        int j = i + 2;
+                        for (; j < length; j++) {
+                            if (this.romanList.get(j).getSymbol() != current.getSymbol())
+                            {
+                                i = j - 2;
+                                break;
+                            }else {
+                                i = j - 1;
+                            }
+                            result += current.getValue();
+                            count++;
+                            if (count > 3) {
+                                throw new GalaxyException(String.format("%s can't be repeated more than 3 times", current.getSymbol()));
+                            }
                         }
                     }
                 }
+                _valueCache = result;
             }
-            _valueCache = result;
-        }
 
+        }
         return _valueCache;
     }
 

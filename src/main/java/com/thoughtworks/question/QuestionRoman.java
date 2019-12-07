@@ -1,5 +1,6 @@
 package com.thoughtworks.question;
 
+import com.thoughtworks.exception.GalaxyException;
 import com.thoughtworks.roman.RomanGroup;
 import com.thoughtworks.Context;
 
@@ -22,6 +23,10 @@ public class QuestionRoman extends AbstractQuestion {
             RomanGroup roman = RomanGroup.Parse(body, this.context.getRomans());
             int calculated = roman.Calculate();
             StringBuffer answer = new StringBuffer(body + " is " + calculated);
+            System.out.println(answer.toString());
+            return answer.toString();
+        }catch(GalaxyException e){
+            StringBuffer answer = new StringBuffer(e.getMessage());
             System.out.println(answer.toString());
             return answer.toString();
         }catch(Exception e){

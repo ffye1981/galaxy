@@ -19,24 +19,26 @@ public class Roman {
     private boolean isRepeat;
     //是否可被减
     private boolean isSubtract;
+    //顺序
+    private int index;
 
     private static List<Roman> romans;
 
     static {
         romans = new ArrayList<Roman>();
-        romans.add(new Roman("I",1,true,true));
-        romans.add(new Roman("V",5,false,false));
-        romans.add(new Roman("X",10,true,true));
-        romans.add(new Roman("L",50,false,false));
-        romans.add(new Roman("C",100,true,true));
-        romans.add(new Roman("D",500,false,false));
-        romans.add(new Roman("M",1000,true,false));
+        romans.add(new Roman("I",1,true,true, 1));
+        romans.add(new Roman("V",5,false,false,2));
+        romans.add(new Roman("X",10,true,true, 3));
+        romans.add(new Roman("L",50,false,false,4));
+        romans.add(new Roman("C",100,true,true,5));
+        romans.add(new Roman("D",500,false,false,6));
+        romans.add(new Roman("M",1000,true,false,7));
     }
 
     public Roman() {
     }
 
-    public Roman(String symbol, int value, boolean isRepeat, boolean isSubtract) {
+    public Roman(String symbol, int value, boolean isRepeat, boolean isSubtract, int index) {
         this.symbol = symbol;
         this.value = value;
         this.isRepeat = isRepeat;
@@ -86,6 +88,13 @@ public class Roman {
         isSubtract = subtract;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
     @Override
     public String toString() {
         return "Roman{" +

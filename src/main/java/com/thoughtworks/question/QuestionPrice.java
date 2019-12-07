@@ -1,5 +1,6 @@
 package com.thoughtworks.question;
 
+import com.thoughtworks.exception.GalaxyException;
 import com.thoughtworks.roman.RomanGroup;
 import com.thoughtworks.Context;
 import com.thoughtworks.util.StringUtils;
@@ -40,7 +41,11 @@ public class QuestionPrice extends AbstractQuestion {
             answer.append(calculated * price + " " + this.context.getUnit());
             System.out.println(answer.toString());
             return answer.toString();
-        }catch(Exception e){
+        }catch(GalaxyException e){
+            StringBuffer answer = new StringBuffer(e.getMessage());
+            System.out.println(e.getCause());
+            return answer.toString();
+        } catch(Exception e){
             StringBuffer answer = new StringBuffer("I have no idea what you are talking about");
             System.out.println(answer.toString());
             return answer.toString();
