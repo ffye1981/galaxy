@@ -27,26 +27,4 @@ public class StringUtilsTest
         };
         System.out.println(StringUtils.join(" ",elements));
     }
-    @Test
-    public void check()
-    {
-        String regex = "[IVXLCDM]*";  //只能由IVXLCDM组成
-
-        System.out.println("I:"+"I".matches(regex));
-        System.out.println("V:"+"V".matches(regex));
-        System.out.println("X:"+"X".matches(regex));
-        System.out.println("L:"+"L".matches(regex));
-        System.out.println("C:"+"C".matches(regex));
-        System.out.println("D:"+"D".matches(regex));
-        System.out.println("M:"+"M".matches(regex));
-        System.out.println("MM:"+"MM".matches(regex));
-        System.out.println("MD:"+"MD".matches(regex));
-        System.out.println("MDA:"+"MDA".matches(regex));
-        System.out.println("IVX:"+"IVX".matches(regex));
-        regex = "[M]{0,3}";
-        System.out.println("M:"+"M".matches(regex));
-        System.out.println("MM:"+"MM".matches(regex));
-        System.out.println("MMM:"+"MMM".matches(regex));
-        System.out.println("MMMM:"+"MMMM".matches(regex));
-    }
 }

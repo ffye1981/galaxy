@@ -1,5 +1,7 @@
 package com.thoughtworks.roman;
 
+import com.thoughtworks.exception.GalaxyException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -55,6 +57,7 @@ public class Roman {
         }
         return r;
     }
+
 
     public String getSymbol() {
         return symbol;

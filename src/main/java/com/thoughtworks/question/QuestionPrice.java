@@ -43,7 +43,7 @@ public class QuestionPrice extends AbstractQuestion {
             return answer.toString();
         }catch(GalaxyException e){
             StringBuffer answer = new StringBuffer(e.getMessage());
-            System.out.println(e.getCause());
+            System.out.println(answer.toString());
             return answer.toString();
         } catch(Exception e){
             StringBuffer answer = new StringBuffer("I have no idea what you are talking about");
