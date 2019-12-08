@@ -5,6 +5,8 @@ import com.thoughtworks.exception.GalaxyException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @program: galaxy
@@ -24,7 +26,8 @@ public class RomanGroup {
      * 罗马字母转换为阿拉伯数字
      * @return
      */
-    public int Calculate() {
+    public int roman2Number() {
+        check(this.romanList);
         int result = 0;
         int length = this.romanList.size();
         if(length == 1) {
@@ -36,12 +39,13 @@ public class RomanGroup {
                     result += current.getValue();
                     break;
                 }
-
                 Roman next = this.romanList.get(i + 1);
-                //当前小于下一个值，做减法
+
                 if(current.getValue() > next.getValue()) {
+                    //当前元素大于下一个元素，累加
                     result += current.getValue();
                 }else if (current.getValue() < next.getValue()) {
+                    //当前元素小于下一个元素，做减法
                     if(!current.isSubtract()) {
                         throw new GalaxyException(String.format("%s can never be subtracted", current.getSymbol()));
                     }
@@ -51,13 +55,9 @@ public class RomanGroup {
                     result += (next.getValue() - current.getValue());
                     i++;
                 } else if (current.getValue() == next.getValue()) {
-                    if (!current.isRepeat()) {
-                        throw new GalaxyException(String.format("%s can't be repeated", current.getSymbol()));
-                    }
+                    //当前元素等于下一个元素，累加
                     result += current.getValue();
-                    int count = 2;
-                    int j = i + 2;
-                    for (; j < length; j++) {
+                    for (int j = i + 2; j < length; j++) {
                         if (this.romanList.get(j).getSymbol() != current.getSymbol())
                         {
                             i = j - 2;
@@ -66,10 +66,6 @@ public class RomanGroup {
                             i = j - 1;
                         }
                         result += current.getValue();
-                        count++;
-                        if (count > 3) {
-                            throw new GalaxyException(String.format("%s can't be repeated more than 3 times", current.getSymbol()));
-                        }
                     }
                 }
             }
@@ -97,6 +93,54 @@ public class RomanGroup {
             roman.getRomanList().add(Roman.findBySymbol(line.charAt(i)+""));
         }
         return roman;
+    }
+
+    /**
+     *  罗马字母校验
+     * @param romans
+     */
+    public static void check(List<Roman> romans){
+
+        StringBuilder romanSequence = new StringBuilder();
+        for (Roman roman: romans) {
+            romanSequence.append(roman.getSymbol());
+        }
+        checkRoman(romanSequence.toString());
+    }
+
+    /**
+     * 非法字符校验
+     * @param romanSequence
+     */
+    public static void checkRoman(String romanSequence) {
+        String pattern = "[MDCLXVI]*";
+        if(!romanSequence.toString().matches(pattern)){
+            throw new GalaxyException(String.format("Illegal symbol"));
+        }
+        checkRepeat(romanSequence);
+    }
+
+    /**
+     * 重复次数校验
+     * @param romanSequence
+     */
+    public static void checkRepeat(String romanSequence){
+        Matcher m= Pattern.compile("(\\w)\\1*").matcher(romanSequence);
+        while(m.find()){
+            String _symbol = m.group().subSequence(0, 1).toString();
+            //实际重复次数
+            int _repeatTimes = m.group().length();
+            //允许重复次数
+            int allowedTimes = Roman.getRepeatTimesBySymbol(_symbol);
+
+            if(_repeatTimes > allowedTimes){
+                if(allowedTimes > 1) {
+                    throw new GalaxyException(String.format("%s can't be repeated more than %s times", _symbol,allowedTimes));
+                }else {
+                    throw new GalaxyException(String.format("%s can't be repeated", _symbol));
+                }
+            }
+        }
     }
 
     public List<Roman> getRomanList() {

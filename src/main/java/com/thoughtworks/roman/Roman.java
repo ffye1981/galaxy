@@ -1,7 +1,5 @@
 package com.thoughtworks.roman;
 
-import com.thoughtworks.exception.GalaxyException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,8 +15,10 @@ public class Roman {
     private String symbol;
     //值
     private int value;
-    //是否可重复
+    //是否允许重复
     private boolean isRepeat;
+    //允许重复次数
+    private int repeatTimes;
     //是否可被减
     private boolean isSubtract;
     //顺序
@@ -28,22 +28,23 @@ public class Roman {
 
     static {
         romans = new ArrayList<Roman>();
-        romans.add(new Roman("I",1,true,true, 1));
-        romans.add(new Roman("V",5,false,false,2));
-        romans.add(new Roman("X",10,true,true, 3));
-        romans.add(new Roman("L",50,false,false,4));
-        romans.add(new Roman("C",100,true,true,5));
-        romans.add(new Roman("D",500,false,false,6));
-        romans.add(new Roman("M",1000,true,false,7));
+        romans.add(new Roman("I",1,true, 3,true, 1));
+        romans.add(new Roman("V",5,false,1,false,2));
+        romans.add(new Roman("X",10,true,3,true, 3));
+        romans.add(new Roman("L",50,false,1,false,4));
+        romans.add(new Roman("C",100,true,3,true,5));
+        romans.add(new Roman("D",500,false,1,false,6));
+        romans.add(new Roman("M",1000,true,3,false,7));
     }
 
     public Roman() {
     }
 
-    public Roman(String symbol, int value, boolean isRepeat, boolean isSubtract, int index) {
+    public Roman(String symbol, int value, boolean isRepeat, int repeatTimes, boolean isSubtract, int index) {
         this.symbol = symbol;
         this.value = value;
         this.isRepeat = isRepeat;
+        this.repeatTimes = repeatTimes;
         this.isSubtract = isSubtract;
     }
 
@@ -56,6 +57,10 @@ public class Roman {
             }
         }
         return r;
+    }
+
+    public static int getRepeatTimesBySymbol(String symbol){
+        return findBySymbol(symbol).getRepeatTimes();
     }
 
 
@@ -98,6 +103,15 @@ public class Roman {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    public int getRepeatTimes() {
+        return repeatTimes;
+    }
+
+    public void setRepeatTimes(int repeatTimes) {
+        this.repeatTimes = repeatTimes;
+    }
+
     @Override
     public String toString() {
         return "Roman{" +
